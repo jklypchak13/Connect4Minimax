@@ -55,3 +55,25 @@ def minimax(board: Board, player: int, depth: int, alpha: int, beta: int) -> Mov
             if(alpha >= beta):
                 break
         return value
+
+
+def take_turn(board: Board, turn: int) -> Board:
+    """take a turn in Connect 4 with minimax
+
+    Arguments:
+        board {Board} -- the starting board state
+        turn {int} -- the active player
+
+    Returns:
+        Board -- the resulting board state from the turn
+    """
+    if turn == 1:
+        move: Move = minimax(board, 1, 5, -1000000000, 10000000)
+        column: int = move.index
+        board.insert_piece(1, int(column))
+        return board
+    elif turn == 2:
+        move: Move = minimax(board, 2, 5, -1000000000, 10000000)
+        column: int = move.index
+        board.insert_piece(2, int(column))
+        return board
